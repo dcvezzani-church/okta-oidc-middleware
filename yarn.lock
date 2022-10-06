@@ -4072,7 +4072,7 @@
   dependencies:
     "mimic-fn" "^2.1.0"
 
-"openid-client@dcvezzani-church/node-openid-client":
+"openid-client@github:dcvezzani-church/node-openid-client":
   "resolved" "git+ssh://git@github.com/dcvezzani-church/node-openid-client.git#a89bf1dd0908dec41966892ff83f252b484e14a8"
   "version" "5.1.10"
   dependencies:
