@@ -134,7 +134,13 @@ oidcUtil.bootstrapPassportStrategy = context => {
   // bypass passport's serializers
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((user, done) => done(null, user));
-  passport.use('oidc', oidcStrategy);
+
+  /*
+   * MODIFIED from original code (original: https://github.com/okta/okta-oidc-middleware.git)
+   * Allows calling code to specify a name for the OIDC strategy
+   * - typically, the value of context should be 'published' or 'preview'
+   */
+  passport.use(`oidc-${context?.options?.context}`, oidcStrategy);
 };
 
 oidcUtil.ensureAuthenticated = (context, options = {}) => {

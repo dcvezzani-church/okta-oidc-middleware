@@ -20,6 +20,15 @@ const OIDCMiddlewareError = require('./OIDCMiddlewareError');
 
 const connectUtil = module.exports;
 
+/*
+ * MODIFIED from original code (original: https://github.com/okta/okta-oidc-middleware.git)
+ * Allows calling code to specify a name for the OIDC strategy
+ * - typically, the value of context should be 'published' or 'preview'
+ */
+const oidcStrategyName = (context) => {
+  return (context?.options?.context) ? `oidc-${context?.options?.context}` : 'oidc'
+}
+
 // Create a router to easily add routes
 connectUtil.createOIDCRouter = context => {
   const routes = context.options.routes;
@@ -84,7 +93,13 @@ connectUtil.createLoginHandler = context => {
         ...opts
       }
     }, {})
-    const passportHandler = passport.authenticate('oidc', options);
+
+    /*
+     * MODIFIED from original code (original: https://github.com/okta/okta-oidc-middleware.git)
+     * Instead of using 'oidc', allow for multiple contexts ('published', 'preview') so as to 
+     * allow for two distince instances of ExpressOIDC to exist at the same time
+     */
+    const passportHandler = passport.authenticate(oidcStrategyName(context), options);
     return passportHandler.apply(this, arguments);
   }
 };
@@ -106,7 +121,12 @@ connectUtil.createLoginCallbackHandler = context => {
       redirectOptions.successReturnToOrRedirect = '/';
     }
 
-    return passport.authenticate('oidc', redirectOptions);
+    /*
+     * MODIFIED from original code (original: https://github.com/okta/okta-oidc-middleware.git)
+     * Instead of using 'oidc', allow for multiple contexts ('published', 'preview') so as to 
+     * allow for two distince instances of ExpressOIDC to exist at the same time
+     */
+    return passport.authenticate(oidcStrategyName(context), redirectOptions);
   }
 
   const customHandlerArity = customHandler.length;
@@ -131,7 +151,12 @@ connectUtil.createLoginCallbackHandler = context => {
           throw new OIDCMiddlewareError('middlewareError', 'Your custom callback handler must request "next"');
       }
     };
-    passport.authenticate("oidc", (err, user, challenge) => {
+    /*
+     * MODIFIED from original code (original: https://github.com/okta/okta-oidc-middleware.git)
+     * Instead of using 'oidc', allow for multiple contexts ('published', 'preview') so as to 
+     * allow for two distince instances of ExpressOIDC to exist at the same time
+     */
+    passport.authenticate(oidcStrategyName(context), (err, user, challenge) => {
       if (user) {
         req.logIn(user, nextHandler);
       } else {
