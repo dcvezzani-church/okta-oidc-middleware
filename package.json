@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@okta/oidc-middleware",
+  "name": "dcvezzani-church/oidc-middleware",
   "version": "5.1.0",
   "description": "OpenId Connect middleware for authorization code flows",
   "repository": "https://github.com/okta/okta-oidc-middleware",
