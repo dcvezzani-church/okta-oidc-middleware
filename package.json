@@ -3,11 +3,8 @@
   "name": "@okta/oidc-middleware",
   "version": "5.1.0",
   "description": "OpenId Connect middleware for authorization code flows",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dcvezzani-church/okta-oidc-middleware"
-  },
-  "homepage": "https://github.com/dcvezzani-church/okta-oidc-middleware#readme",
+  "repository": "https://github.com/okta/okta-oidc-middleware",
+  "homepage": "https://github.com/okta/okta-oidc-middleware#readme",
   "keywords": [
     "okta",
     "oidc",
@@ -48,7 +45,7 @@
     "lodash": "^4.17.21",
     "negotiator": "^0.6.1",
     "node-fetch": "^2.6.7",
-    "openid-client": "https://github.com/dcvezzani-church/node-openid-client.git",
+    "openid-client": "^5.1.9",
     "passport": "^0.6.0",
     "uuid": "^8.3.2"
   },
