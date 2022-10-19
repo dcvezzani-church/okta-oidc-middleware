@@ -4072,8 +4072,9 @@
   dependencies:
     "mimic-fn" "^2.1.0"
 
-"openid-client@github:dcvezzani-church/node-openid-client":
-  "resolved" "git+ssh://git@github.com/dcvezzani-church/node-openid-client.git#ebebcaba3fca28912a4c84e94c5a0acf6586fafa"
+"openid-client@https://github.com/dcvezzani-church/node-openid-client/tarball/main":
+  "integrity" "sha512-I29MCdPBkG6Svn4AURfgOgPRglLohPrELeYBPPcdJy6fMvp4iZvUn39D52pKFFgBvxUIcdd3TyQKdmPcR3MZzw=="
+  "resolved" "https://github.com/dcvezzani-church/node-openid-client/tarball/main"
   "version" "5.1.10"
   dependencies:
     "jose" "^4.1.4"
